@@ -5,42 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.orangehrmlive.pages.AdminPage;
 import com.orangehrmlive.pages.LoginPage;
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-class AdminPageTest {
-
-  private WebDriver driver;
-  private WebDriverWait wait;
+class AdminPageTest extends BaseTest {
 
   @BeforeEach
-  void setUp() {
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    LoginPage loginPage = new LoginPage(driver).open();
-    wait.until(ExpectedConditions.visibilityOfElementLocated(LoginPage.USERNAME));
-    loginPage.login("Admin", "admin123");
-    wait.until(ExpectedConditions.urlContains("/dashboard"));
+  void loginAndOpenAdminPage() {
+    new LoginPage(driver).open().login(ADMIN_USERNAME, ADMIN_PASSWORD);
     new AdminPage(driver).open();
     wait.until(ExpectedConditions.visibilityOfElementLocated(AdminPage.USERNAME));
-  }
-
-  @AfterEach
-  void tearDown() {
-    if (driver != null) {
-      driver.quit();
-    }
   }
 
   @Test
