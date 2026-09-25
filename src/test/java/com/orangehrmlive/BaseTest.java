@@ -28,4 +28,14 @@ public abstract class BaseTest {
       driver.quit();
     }
   }
+
+  protected static String lettersSuffix() {
+    long n = System.currentTimeMillis();
+    StringBuilder letters = new StringBuilder();
+    while (n > 0) {
+      letters.append((char) ('a' + (n % 26)));
+      n /= 26;
+    }
+    return letters.toString();
+  }
 }
