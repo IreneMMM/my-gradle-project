@@ -13,6 +13,8 @@ repositories {
 
 checkstyle {
     toolVersion = '10.12.7'
+    ignoreFailures = false
+    maxWarnings = 0
 }
 
 configurations.checkstyle {

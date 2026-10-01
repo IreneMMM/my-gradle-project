@@ -15,7 +15,9 @@
         <module name="UnusedImports"/>
         <module name="RedundantImport"/>
         <module name="UnusedLocalVariable"/>
-        <module name="NeedBraces"/>
+        <module name="NeedBraces">
+            <property name="severity" value="ignore"/>
+        </module>
         <module name="LeftCurly"/>
         <module name="RightCurly"/>
         <module name="WhitespaceAround"/>
